@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+* {
+  font-family: poppins;
+}
+
+#mainDiv {
+  text-align: center;
+  height: 90vh;
+  display: flex;
+  align-items: center;
+}
+
+#innerDiv {
+  width: 100%;
+  /* margin-top: auto;
+  margin-bottom: auto; */
+}
+#numInput {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.205);
+  display: block;
+  width: 70%;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+#numInput:focus-visible {
+  outline: none;
+}
+
+#submitBtn {
+  background-color: #f7a934;
+  padding: 10px;
+  width: 70%;
+  border-radius: 10px;
+  border: 1px solid white;
+  color: white;
+  margin-top: 10px;
+  font-family: poppins;
+}
+
+#submitBtn:hover {
+  opacity: 80%;
+  transition: 0.5s;
+}
+
+#footerText {
+  position: absolute;
+  bottom: 0;
+  left: 30%;
+  font-size: 13px;
+  font-family: poppins;
+}
+
+#inputBox {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin: auto;
+  text-align: center;
+  justify-content: center;
+}
+#phoneCode {
+  background-color: transparent;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.205);
+  padding: 10px;
+}
+
+@media (min-width: 568px) {
+  #mainDiv {
+    width: 80%;
+    margin: auto;
+  }
+}
+@media (min-width: 768px) {
+  #mainDiv {
+    width: 50%;
+    margin: auto;
+  }
+  #footerText {
+    left: 40%;
+  }
+}
+@media (min-width: 1168px) {
+  #mainDiv {
+    width: 40%;
+    margin: auto;
+  }
+  #footerText {
+    left: 45%;
+  }
+}
