@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './Home.css';
-
-
+import { BrowserRouter, Link, Routes, Route } from 'react-router-dom';
 
 export default function HomePage() {
   let [phone, setPhone] = useState(0);
@@ -12,6 +11,7 @@ export default function HomePage() {
     action: 'Signin_or_Signup',
     timestamp: 1652446231059,
   };
+
   function continueUser() {
     if (phone.length >= 10) {
       fetch('https://agcare.platform.simplifii.com/api/v1/get_otp', {
@@ -39,19 +39,23 @@ export default function HomePage() {
         />
 
         <h1>{phone}</h1>
-        <div id="inputBox">
-          <button id="phoneCode">+91</button>
-          <input
-            type="text"
-            onKeyUp={(e) => setPhone(e.target.value)}
-            id="numInput"
-            placeholder="Enter Phone Number"
-            required
-          />
-        </div>
-        <button id="submitBtn" onClick={continueUser}>
-          Continue
-        </button>
+        <form action="/verify" method="">
+          <div id="inputBox">
+            <button id="phoneCode">+91</button>
+            <input
+              type="text"
+              onKeyUp={(e) => setPhone(e.target.value)}
+              id="numInput"
+              placeholder="Enter Phone Number"
+              required
+            />
+          </div>
+          <Link to="/verify">
+          <button id="submitBtn" onClick={continueUser}>
+            Continue
+          </button>
+          </Link>
+        </form>
       </div>
 
       <p id="footerText">Made with Love in India</p>

@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import './Home.css';
-
-export default function HomePage() {
-  let [phone, setPhone] = useState(0);
+export default function OtpPage(props) {
+  let [code, setCode] = useState(0);
 
   let config = {
-    token: '717dc2d82d86be210bef206cf512dba9',
-    mobile: phone,
-    action: 'Signin_or_Signup',
-    timestamp: 1652446231059,
+    "username": "9786752313",
+     "password": "260599",
+     "os": "ANDROID"
   };
-  function continueUser() {
-    if (phone.length >= 10) {
-      fetch('https://agcare.platform.simplifii.com/api/v1/get_otp', {
+
+  function verifyUser() {
+    if (code.length ==6) {
+      fetch('https://agcare.platform.simplifii.com/api/v1/admin/authenticate', {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -24,10 +23,9 @@ export default function HomePage() {
           console.log(result.msg);
         });
     } else {
-      alert('Invalid Phone Number');
+      alert('Invalid One Time Password');
     }
   }
-
   return (
     <div id="mainDiv">
       <div id="innerDiv">
@@ -36,19 +34,18 @@ export default function HomePage() {
           className="centerText mx-auto"
         />
 
-        <h1>{phone}</h1>
         <div id="inputBox">
-          <button id="phoneCode">+91</button>
+          <button id="phoneCode">Code</button>
           <input
             type="text"
-            onKeyUp={(e) => setPhone(e.target.value)}
+            onKeyUp={(e) => setCode(e.target.value)}
             id="numInput"
-            placeholder="Enter Phone Number"
+            placeholder="Enter the OTP"
             required
           />
         </div>
-        <button id="submitBtn" onClick={continueUser}>
-          Continue
+        <button id="submitBtn" onClick={verifyUser}>
+          Verify
         </button>
       </div>
 
