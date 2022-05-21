@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css');
+
 * {
   font-family: poppins;
 }
@@ -10,6 +12,9 @@
   align-items: center;
 }
 
+#welctext {
+  margin: auto;
+}
 #innerDiv {
   width: 100%;
   /* margin-top: auto;
@@ -37,6 +42,16 @@
   color: white;
   margin-top: 10px;
   font-family: poppins;
+}
+#timerBtn {
+  background-color: #f7a934;
+  padding: 5px;
+  border-radius: 10px;
+  border: 1px solid white;
+  color: white;
+  margin-top: 10px;
+  font-family: poppins;
+  display: block;
 }
 
 #submitBtn:hover {

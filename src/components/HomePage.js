@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import './Home.css';
-import { BrowserRouter, Link, Routes, Route } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+import OtpPage from './OtpPage';
 
 export default function HomePage() {
   let [phone, setPhone] = useState(0);
+  let [redirect, setRed] = useState(0);
+  let [msg, setMsg] = useState('');
+  let [text, setText] = useState('Continue');
 
   let config = {
     token: '717dc2d82d86be210bef206cf512dba9',
@@ -12,9 +16,10 @@ export default function HomePage() {
     timestamp: 1652446231059,
   };
 
-  function continueUser() {
-    if (phone.length >= 10) {
-      fetch('https://agcare.platform.simplifii.com/api/v1/get_otp', {
+  async function continueUser() {
+    setText(<i className="fas fa-spinner fa-spin"></i>);
+    if (phone.length == 10) {
+      await fetch('https://agcare.platform.simplifii.com/api/v1/get_otp', {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -23,23 +28,28 @@ export default function HomePage() {
       })
         .then((res) => res.json())
         .then((result) => {
-          console.log(result.msg);
+          setRed(1);
+          setMsg(result.msg);
         });
     } else {
       alert('Invalid Phone Number');
     }
+    setText('Continue');
   }
 
-  return (
-    <div id="mainDiv">
-      <div id="innerDiv">
-        <img
-          src="https://i.ibb.co/7bPrN2B/Screenshot-2022-05-19-at-16-47-44-Login-and-Signup.png"
-          className="centerText mx-auto"
-        />
+  if (redirect) {
+    return <OtpPage number={phone} msg={msg} otpFn={()=>continueUser} />;
+  } else {
+    return (
+      <div id="mainDiv">
+        <div id="innerDiv">
+          <img
+            src="https://i.ibb.co/7bPrN2B/Screenshot-2022-05-19-at-16-47-44-Login-and-Signup.png"
+            className="centerText mx-auto"
+          />
 
-        <h1>{phone}</h1>
-        <form action="/verify" method="">
+          <h4>Enter your Phone Number</h4>
+
           <div id="inputBox">
             <button id="phoneCode">+91</button>
             <input
@@ -50,15 +60,13 @@ export default function HomePage() {
               required
             />
           </div>
-          <Link to="/verify">
           <button id="submitBtn" onClick={continueUser}>
-            Continue
+            {text}
           </button>
-          </Link>
-        </form>
-      </div>
+        </div>
 
-      <p id="footerText">Made with Love in India</p>
-    </div>
-  );
+        <p id="footerText">Made with Love in India</p>
+      </div>
+    );
+  }
 }
