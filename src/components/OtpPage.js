@@ -6,7 +6,7 @@ export default function OtpPage(props) {
   let [code, setCode] = useState(0);
   let [verified, setVerify] = useState(0);
   let [text, setText] = useState('Verify');
-  let [timer, setTimer] = useState(3);
+  let [timer, setTimer] = useState(30);
   let configOtp = {
     username: props.number,
     password: code,
