@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Home.css';
 import Welcome from './Welcome';
 
@@ -6,18 +6,21 @@ export default function OtpPage(props) {
   let [code, setCode] = useState(0);
   let [verified, setVerify] = useState(0);
   let [text, setText] = useState('Verify');
-  let [timer, setTimer] = useState(30);
+  let [timer, setTimer] = useState(3);
   let configOtp = {
     username: props.number,
     password: code,
   };
 
-  while (timer > 0) {
-    setTimer(timer - 1);
-  }
-  if (timer == 0) {
-    setTimer('Resend OTP');
-  }
+  const timerNew = () => setTimer(timer - 1);
+
+  useEffect(() => {
+    if (timer < 1) {
+      return;
+    }
+    const id = setInterval(timerNew, 1000);
+    return () => clearInterval(id);
+  }, [timer]);
 
   let config = {
     token: '717dc2d82d86be210bef206cf512dba9',
@@ -27,7 +30,7 @@ export default function OtpPage(props) {
   };
 
   async function continueUser() {
-    setText(<i className="fas fa-spinner fa-spin"></i>);
+    setTimer(<i className="fas fa-spinner fa-spin"></i>);
     await fetch('https://agcare.platform.simplifii.com/api/v1/get_otp', {
       headers: {
         'Content-Type': 'application/json',
@@ -38,8 +41,8 @@ export default function OtpPage(props) {
       .then((res) => res.json())
       .then((result) => {
         alert(result.msg);
+        setTimer(30);
       });
-    setText('Continue');
   }
 
   async function verifyUser() {
@@ -93,8 +96,8 @@ export default function OtpPage(props) {
           <button id="submitBtn" onClick={verifyUser}>
             {text}
           </button>
-          <button id="timerBtn" onClick={props.otpFn}>
-            {timer}
+          <button id="timerBtn" onClick={continueUser}>
+            {timer ? timer : 'Resend Otp'}
           </button>
         </div>
 
