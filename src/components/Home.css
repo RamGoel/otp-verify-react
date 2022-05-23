@@ -34,17 +34,16 @@
 }
 
 #submitBtn {
-  background-color: #f7a934;
-  padding: 10px;
-  width: 70%;
+  background-color: #000000;
+  padding: 10px 10px;
+  margin: 0px 5px;
   border-radius: 10px;
   border: 1px solid white;
   color: white;
-  margin-top: 10px;
   font-family: poppins;
 }
 #timerBtn {
-  background-color: #f7a934;
+  background-color: #000000;
   padding: 5px;
   border-radius: 10px;
   border: 1px solid white;

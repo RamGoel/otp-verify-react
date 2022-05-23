@@ -59,10 +59,10 @@ export default function HomePage() {
               placeholder="Enter Phone Number"
               required
             />
-          </div>
           <button id="submitBtn" onClick={continueUser}>
             {text}
           </button>
+          </div>
         </div>
 
         <p id="footerText">Made with Love in India</p>

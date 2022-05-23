@@ -92,10 +92,10 @@ export default function OtpPage(props) {
               placeholder="Enter the OTP"
               required
             />
+            <button id="submitBtn" onClick={verifyUser}>
+              {text}
+            </button>
           </div>
-          <button id="submitBtn" onClick={verifyUser}>
-            {text}
-          </button>
           <button id="timerBtn" onClick={continueUser}>
             {timer ? timer : 'Resend Otp'}
           </button>
